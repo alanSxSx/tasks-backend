@@ -11,21 +11,18 @@ public class DateUtilsTest {
 	public void deveRetornarTrueParaDatasFuturas() {
 		LocalDate date = LocalDate.now().plusDays(1);
 		Assert.assertTrue(DateUtils.isEqualOrFutureDate(date));
-		System.out.println("Data: " + date + " | Se for presente ou futuro é true se for passado é false: " + DateUtils.isEqualOrFutureDate(date));		
 	}
 	
 	@Test
 	public void deveRetornarFalseParaDatasPassadas() {
 		LocalDate date = LocalDate.now().minusDays(1);
 		Assert.assertFalse(DateUtils.isEqualOrFutureDate(date));
-		System.out.println("Data: " + date + " | Se for presente ou futuro é true se for passado é false: " + DateUtils.isEqualOrFutureDate(date));		
 	}
 	
 	@Test
 	public void deveRetornarTrueParaDataAtual() {
 		LocalDate date = LocalDate.now();
 		Assert.assertTrue(DateUtils.isEqualOrFutureDate(date));
-		System.out.println("Data: " + date + " | Se for presente ou futuro é true se for passado é false: " + DateUtils.isEqualOrFutureDate(date));
 	}
 	
 	
