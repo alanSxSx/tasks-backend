@@ -21,10 +21,9 @@ pipeline {
         stage('Sonar Analysis') {
             steps {
                 withSonarQubeEnv('SONAR_LOCAL') {
-                    bat "${scannerHome}/bin/sonar-scanner -e " +
+                    bat "${scannerHome}\\bin\\sonar-scanner -e " +
                         "-Dsonar.projectKey=DeployBack " +
                         "-Dsonar.host.url=http://localhost:9000 " +
-                        "-Dsonar.projectBaseDir=C:\\\\Users\\\\Alan\\\\.jenkins\\\\workspace\\\\DeployBack " +
                         "-Dsonar.login=sqp_5d2cbcc4ff612aca3c14ac32bfe98f0668ab342d " +
                         "-Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml " +
                         "-Dsonar.coverage.exclusions=**/.mvn/**,**/src/test/**,**/model/**,**/Application.java " +
@@ -33,12 +32,12 @@ pipeline {
             }
         }
 
-				stage('Quality Gate') {
+        stage('Quality Gate') {
             steps {
-								sleep(5)
-								timeout(time: 1, unit: 'MINUTES') {
-									waitForQualityGate abortPipeline: true
-								}
+                sleep(5)
+                timeout(time: 1, unit: 'MINUTES') {
+                    waitForQualityGate abortPipeline: true
+                }
             }
         }
     }
