@@ -65,5 +65,14 @@ pipeline {
 								}
             }
         }
+
+				stage('Functional Test') {
+            steps {
+								dir('functional-test') {
+                git credentialsId: 'gitHub', url: 'https://github.com/alanSxSx/tasks-functional-test'
+								bat 'mvn test'
+								}
+            }
+        }
     }
 }
