@@ -1,4 +1,4 @@
-FROM tomcat:9.0.104-jdk21
+FROM tomcat:11.0.6-jdk21
 
 ARG WAR_FILE
 ARG CONTEXT
