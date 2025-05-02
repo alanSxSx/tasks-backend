@@ -43,7 +43,7 @@ pipeline {
 
 				stage('Deploy Backend') {
             steps {
-                deploy adapters: [tomcat9(credentialsId: 'tomCatLogin', path: '', url: 'http://192.168.1.6:8080/')], contextPath: 'tasks-backend', war: 'target/tasks-backend.war'
+                deploy adapters: [tomcat9(credentialsId: 'tomCatLogin', path: '', url: 'http://localhost:8080/')], contextPath: 'tasks-backend', war: 'target/tasks-backend.war'
             }
         }
 
@@ -61,7 +61,7 @@ pipeline {
 								dir('frontend') {
                 git credentialsId: 'gitHub', url: 'https://github.com/alanSxSx/tasks-frontend'
 								bat 'mvn clean package'
-								deploy adapters: [tomcat9(credentialsId: 'tomCatLogin', path: '', url: 'http://192.168.1.6:8080/')], contextPath: 'tasks', war: 'target/tasks.war'
+								deploy adapters: [tomcat9(credentialsId: 'tomCatLogin', path: '', url: 'http://localhost:8080/')], contextPath: 'tasks', war: 'target/tasks.war'
 								}
             }
         }
