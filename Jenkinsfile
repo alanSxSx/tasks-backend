@@ -14,7 +14,7 @@ pipeline {
 
         stage('Unit Tests') {
             steps {
-                bat 'mvn clean test jacoco:report'
+                bat 'mvn test jacoco:report'
             }
         }
 
