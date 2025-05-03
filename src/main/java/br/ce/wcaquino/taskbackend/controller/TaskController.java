@@ -16,18 +16,21 @@ import br.ce.wcaquino.taskbackend.repo.TaskRepo;
 import br.ce.wcaquino.taskbackend.utils.DateUtils;
 import br.ce.wcaquino.taskbackend.utils.ValidationException;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
 @RestController
 @RequestMapping(value ="/todo")
 public class TaskController {
 
 	@Autowired
 	private TaskRepo todoRepo;
-	
+
 	@GetMapping
 	public List<Task> findAll() {
 		return todoRepo.findAll();
 	}
-	
+
 	@PostMapping
 	public ResponseEntity<Task> save(@RequestBody Task todo) throws ValidationException {
 		if(todo.getTask() == null || todo.getTask() == "") {
@@ -42,4 +45,15 @@ public class TaskController {
 		Task saved = todoRepo.save(todo);
 		return new ResponseEntity<Task>(saved, HttpStatus.CREATED);
 	}
+
+
+@DeleteMapping("/{id}")
+public ResponseEntity<Void> delete(@PathVariable Long id) {
+    if (!todoRepo.existsById(id)) {
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+    todoRepo.deleteById(id);
+    return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+}
+
 }
