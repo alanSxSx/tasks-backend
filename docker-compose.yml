@@ -30,7 +30,7 @@ services:
       - DATABASE_PORT=5432
       - DATABASE_USER=postgres
       - DATABASE_PASSWD=passwd
-      #- DATABASE_UPDATE=none
+      - DATABASE_UPDATE=none #QUANDO FAZ UM NOVO BUILD, OS DADOS DO BANCO SE MANTÉM.
     depends_on:
       - db
 
